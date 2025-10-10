@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bank Link Bridge</title>
+</head>
+<body>
+  <h3>Đang xử lý, vui lòng chờ...</h3>
+  <script>
+    (function () {
+      // Lấy query params (vd: ?status=success&token=abc123)
+      const params = Object.fromEntries(new URLSearchParams(window.location.search));
+
+      // Gửi về WebView trong app
+      if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
+        window.ReactNativeWebView.postMessage(JSON.stringify(params));
+      } else {
+        // fallback (trường hợp debug trên trình duyệt)
+        console.log('Bridge params:', params);
+        document.body.innerHTML = "<pre>" + JSON.stringify(params, null, 2) + "</pre>";
+      }
+    })();
+  </script>
+</body>
+</html>
