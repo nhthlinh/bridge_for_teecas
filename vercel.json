@@ -1,0 +1,8 @@
+{
+  "builds": [
+    { "src": "public/bridge.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "public/bridge.html" }
+  ]
+}
